@@ -15,8 +15,8 @@ void main() {
     await tester.pumpWidget(const MyApp());
     await tester.pumpAndSettle();
 
-    // The Login screen app bar should be visible
-    expect(find.widgetWithText(AppBar, 'Login'), findsOneWidget);
+    // The Login screen title should be visible
+    expect(find.text('Shop Floor Lite'), findsOneWidget);
     // Email label exists
     expect(find.text('Email'), findsOneWidget);
   });

@@ -22,8 +22,20 @@ class _DowntimeListScreenState extends State<DowntimeListScreen> {
   }
 
   Future<void> _openBox() async {
-    box = await Hive.openBox<Downtime>('downtimes');
-    if (mounted) setState(() {});
+    // If another part of the app already opened the box, use it synchronously
+    if (Hive.isBoxOpen('downtimes')) {
+      box = Hive.box<Downtime>('downtimes');
+      if (mounted) setState(() {});
+      return;
+    }
+
+    try {
+      box = await Hive.openBox<Downtime>('downtimes');
+      if (mounted) setState(() {});
+    } catch (e) {
+      // ignore: avoid_print
+      print('Failed to open downtimes box: $e');
+    }
   }
 
   List<Downtime> _downtimesForMachine() {

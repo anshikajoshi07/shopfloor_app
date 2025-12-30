@@ -124,7 +124,7 @@ void main() {
     svc.start(interval: const Duration(milliseconds: 50));
 
     // wait for the service to produce at least one event
-    final got = await Future.any([
+    await Future.any([
       Future.delayed(const Duration(seconds: 1), () => false),
       Future.doWhile(() async {
         await Future.delayed(const Duration(milliseconds: 30));
@@ -138,7 +138,7 @@ void main() {
     expect(events.isNotEmpty, true);
 
     // check it's persisted
-    final persisted = await box.get(events.first.id);
+    final persisted = box.get(events.first.id);
     expect(persisted, isNotNull);
 
     await box.close();

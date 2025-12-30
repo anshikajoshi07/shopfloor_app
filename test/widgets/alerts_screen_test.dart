@@ -94,5 +94,5 @@ void main() {
     }
     expect(cleared, isTrue, reason: 'Alert should reach Cleared status after clear');
     expect(find.textContaining('Cleared by:'), findsOneWidget);
-  }, skip: 'Flaky in local test runner — skipping temporarily');
+  }, skip: true);
 }

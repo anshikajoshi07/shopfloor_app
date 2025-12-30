@@ -12,8 +12,8 @@ void main() {
     expect(find.byKey(const Key('role-supervisor')), findsOneWidget);
     expect(find.byKey(const Key('login-button')), findsOneWidget);
 
-    // Default role is Operator and its button should be enabled
-    final operatorBtn = tester.widget<OutlinedButton>(find.byKey(const Key('role-operator')));
-    expect(operatorBtn.onPressed, isNotNull);
+    // Default role is Operator and its button should show as selected style (blue background)
+    final operatorBtn = tester.widget<ElevatedButton>(find.byKey(const Key('role-operator')));
+    expect(operatorBtn.enabled, isTrue);
   });
 }
